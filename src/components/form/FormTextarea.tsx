@@ -1,29 +1,29 @@
-import { forwardRef } from "react"
 import { cn } from "@/lib/utils"
+import { forwardRef } from "react"
 import { FormField } from "./FormField"
 import type { BaseFieldProps } from "@/types"
 
 export interface FormTextareaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "disabled">,
     BaseFieldProps {
-  /** Exibe contador de caracteres quando maxLength é definido */
+  
   showCount?: boolean
 }
 
-/**
- * Campo de texto multilinha reutilizável.
- * Compatível com react-hook-form via spread de register().
- *
- * @example
- * <FormTextarea
- *   label="Mensagem"
- *   rows={4}
- *   maxLength={500}
- *   showCount
- *   error={errors.message?.message}
- *   {...register("message")}
- * />
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(
   (
     {

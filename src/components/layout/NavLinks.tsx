@@ -1,14 +1,15 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+
 import { cn } from "@/lib/utils"
 import { NAV_ITEMS } from "@/constants"
+import { usePathname } from "next/navigation"
 
 interface NavLinksProps {
-  /** Callback executado ao clicar em um link (usado pelo mobile para fechar o menu) */
+  
   onNavigate?: () => void
-  /** Orientação do menu */
+  
   direction?: "horizontal" | "vertical"
   className?: string
 }

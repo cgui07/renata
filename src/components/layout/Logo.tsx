@@ -1,7 +1,8 @@
 import Link from "next/link"
-import { Building2 } from "lucide-react"
-import { ROUTES } from "@/constants"
+
 import { cn } from "@/lib/utils"
+import { ROUTES } from "@/constants"
+import { Building2 } from "lucide-react"
 
 interface LogoProps {
   className?: string

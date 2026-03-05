@@ -1,8 +1,8 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { Heart } from "lucide-react"
 import { useFavorites } from "@/hooks/useFavorites"
-import { cn } from "@/lib/utils"
 
 interface FavoriteButtonProps {
   propertyId: string

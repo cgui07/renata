@@ -1,17 +1,19 @@
-import { Building2, MapPin, Maximize2, ArrowRight, MessageCircle } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { PropertyCarousel } from "@/components/common/PropertyCarousel"
-import { FavoriteButton } from "@/components/common/FavoriteButton"
-import { cn } from "@/lib/utils"
 import { formatCurrency, formatArea } from "@/lib/formatters"
+import { ContactModal } from "@/components/common/ContactModal"
+import { FavoriteButton } from "@/components/common/FavoriteButton"
 import type { PropertyListing, STATUS_LABELS } from "@/lib/mock-data"
+import { PropertyCarousel } from "@/components/common/PropertyCarousel"
+import { Building2, MapPin, Maximize2, ArrowRight, MessageCircle } from "lucide-react"
 
 interface PropertyCardProps {
   property: PropertyListing
   statusLabels: typeof STATUS_LABELS
-  /** "compact" = home (badge + placeholder), "full" = /imoveis (carousel, sem badge) */
+  
   variant?: "compact" | "full"
+  leadSource?: "property" | "favorites_property"
   className?: string
 }
 
@@ -25,6 +27,7 @@ export function PropertyCard({
   property,
   statusLabels,
   variant = "compact",
+  leadSource = "property",
   className,
 }: PropertyCardProps) {
   return (
@@ -35,9 +38,7 @@ export function PropertyCard({
         "hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20 hover:-translate-y-0.5",
         className
       )}
-    >
-      {/* Imagem: carousel na variante full, placeholder estático na compact */}
-      {variant === "full" ? (
+    >      {variant === "full" ? (
         <div className="relative">
           <PropertyCarousel name={property.name} slideCount={5} />
           <FavoriteButton
@@ -50,33 +51,19 @@ export function PropertyCard({
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-linear-to-br from-secondary/5 to-primary/10">
             <Building2 className="size-10 text-neutral-300" />
             <span className="text-xs text-neutral-400">Imagem em breve</span>
-          </div>
-
-          {/* Badge de status (só compact) */}
-          <Badge
+          </div>          <Badge
             className={cn(
               "absolute top-3 left-3 text-[0.65rem] font-semibold uppercase tracking-wider border-0 px-2.5 py-1 shadow-sm",
               statusStyles[property.status]
             )}
           >
             {statusLabels[property.status]}
-          </Badge>
-
-          {/* Favorito */}
-          <FavoriteButton
+          </Badge>          <FavoriteButton
             propertyId={property.id}
             className="absolute top-3 right-3 z-10"
-          />
-
-          {/* Overlay hover */}
-          <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
+          />          <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
         </div>
-      )}
-
-      {/* Conteúdo */}
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        {/* Nome + localização */}
-        <div>
+      )}      <div className="flex flex-1 flex-col gap-3 p-5">        <div>
           <h3 className="text-base font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
             {property.name}
           </h3>
@@ -84,34 +71,22 @@ export function PropertyCard({
             <MapPin className="size-3.5 shrink-0" />
             <span>{property.neighborhood}, {property.city}</span>
           </div>
-        </div>
-
-        {/* Detalhes */}
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-500">
+        </div>        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-500">
           <span className="flex items-center gap-1.5">
             <Maximize2 className="size-3.5" />
             {formatArea(property.areaMin)} a {formatArea(property.areaMax)}
           </span>
           <span className="hidden sm:inline text-neutral-300">|</span>
           <span>{property.typology}</span>
-        </div>
-
-        {/* Endereço (só variante full) */}
-        {variant === "full" && property.address && (
+        </div>        {variant === "full" && property.address && (
           <p className="text-xs text-muted-foreground leading-relaxed line-clamp-1">
             {property.address}
           </p>
-        )}
-
-        {/* Descrição (só variante full) */}
-        {variant === "full" && property.description && (
+        )}        {variant === "full" && property.description && (
           <p className="text-sm text-neutral-500 leading-relaxed line-clamp-2">
             {property.description}
           </p>
-        )}
-
-        {/* Preço + CTA */}
-        <div
+        )}        <div
           className={cn(
             "mt-auto pt-3 border-t border-border/50",
             variant === "compact"
@@ -142,12 +117,17 @@ export function PropertyCard({
           </div>
 
           {variant === "full" && (
-            <Button
-              className="w-full gap-2 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold"
-            >
-              <MessageCircle className="size-4" />
-              Falar com o corretor
-            </Button>
+            <ContactModal
+              propertyId={property.id}
+              propertyName={property.name}
+              source={leadSource}
+              trigger={
+                <Button className="w-full gap-2 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold">
+                  <MessageCircle className="size-4" />
+                  Falar com o corretor
+                </Button>
+              }
+            />
           )}
         </div>
       </div>

@@ -2,9 +2,9 @@ import { cn } from "@/lib/utils"
 import type { HTMLAttributes } from "react"
 
 interface SectionProps extends HTMLAttributes<HTMLElement> {
-  /** Espaçamento vertical. Padrão: md */
+  
   spacing?: "sm" | "md" | "lg" | "xl"
-  /** Tag HTML a renderizar. Padrão: section */
+  
   as?: "section" | "div" | "article" | "main"
 }
 

@@ -1,5 +1,5 @@
-import { forwardRef } from "react"
 import { cn } from "@/lib/utils"
+import { forwardRef } from "react"
 import type { BaseFieldProps } from "@/types"
 
 export interface FormCheckboxProps
@@ -8,17 +8,17 @@ export interface FormCheckboxProps
   label: string
 }
 
-/**
- * Checkbox com label, erro e texto de ajuda.
- * Compatível com react-hook-form via spread de register().
- *
- * @example
- * <FormCheckbox
- *   label="Aceito os termos de uso"
- *   error={errors.terms?.message}
- *   {...register("terms")}
- * />
- */
+
+
+
+
+
+
+
+
+
+
+
 export const FormCheckbox = forwardRef<HTMLInputElement, FormCheckboxProps>(
   ({ label, error, helpText, disabled, className, id, ...props }, ref) => {
     const inputId = id ?? label.toLowerCase().replace(/\s+/g, "-")

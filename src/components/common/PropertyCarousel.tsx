@@ -1,12 +1,11 @@
-"use client"
+﻿"use client"
 
 import { useState } from "react"
-import { Building2, ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Building2, ChevronLeft, ChevronRight } from "lucide-react"
 
 interface PropertyCarouselProps {
   name: string
-  /** Número de slides placeholder a gerar */
   slideCount?: number
   className?: string
 }
@@ -40,8 +39,12 @@ export function PropertyCarousel({
   }
 
   return (
-    <div className={cn("relative aspect-[4/3] overflow-hidden bg-neutral-100 group/carousel", className)}>
-      {/* Slides */}
+    <div
+      className={cn(
+        "relative aspect-4/3 overflow-hidden bg-neutral-100 group/carousel",
+        className
+      )}
+    >
       <div
         className="flex h-full transition-transform duration-500 ease-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
@@ -57,13 +60,11 @@ export function PropertyCarousel({
           >
             <Building2 className="size-10 text-neutral-300/80" />
             <span className="text-xs text-neutral-400">
-              {name} — Foto {i + 1}
+              {name} - Foto {i + 1}
             </span>
           </div>
         ))}
       </div>
-
-      {/* Setas de navegação */}
       <button
         onClick={prev}
         className="absolute left-2 top-1/2 -translate-y-1/2 flex size-8 items-center justify-center rounded-full bg-white/80 text-neutral-700 shadow-sm backdrop-blur-sm opacity-0 transition-opacity group-hover/carousel:opacity-100 hover:bg-white"
@@ -74,12 +75,10 @@ export function PropertyCarousel({
       <button
         onClick={next}
         className="absolute right-2 top-1/2 -translate-y-1/2 flex size-8 items-center justify-center rounded-full bg-white/80 text-neutral-700 shadow-sm backdrop-blur-sm opacity-0 transition-opacity group-hover/carousel:opacity-100 hover:bg-white"
-        aria-label="Próxima foto"
+        aria-label="Proxima foto"
       >
         <ChevronRight className="size-4" />
       </button>
-
-      {/* Indicadores (dots) */}
       <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex gap-1.5">
         {Array.from({ length: total }, (_, i) => (
           <button
@@ -91,9 +90,7 @@ export function PropertyCarousel({
             }}
             className={cn(
               "size-1.5 rounded-full transition-all",
-              i === current
-                ? "w-4 bg-white shadow-sm"
-                : "bg-white/50 hover:bg-white/80"
+              i === current ? "w-4 bg-white shadow-sm" : "bg-white/50 hover:bg-white/80"
             )}
             aria-label={`Foto ${i + 1}`}
           />

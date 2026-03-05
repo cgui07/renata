@@ -1,10 +1,11 @@
 import Link from "next/link"
-import { Container } from "@/components/layout"
+
+import { ROUTES } from "@/constants"
 import { Section } from "@/components/layout"
+import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { BuyFilterBar } from "@/components/sections/BuyFilterBar"
 import { PropertySection } from "@/components/sections/PropertySection"
-import { ROUTES } from "@/constants"
 import {
   PRE_LAUNCH_PROPERTIES,
   NEW_PROPERTIES,
@@ -13,9 +14,7 @@ import {
 
 export default function HomePage() {
   return (
-    <>
-      {/* Hero */}
-      <Section spacing="lg" className="bg-linear-to-b from-secondary/3 to-surface pb-16">
+    <>      <Section spacing="lg" className="bg-linear-to-b from-secondary/3 to-surface pb-16">
         <Container>
           <div className="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-secondary leading-tight">
@@ -36,35 +35,20 @@ export default function HomePage() {
             </div>
           </div>
         </Container>
-      </Section>
-
-      {/* Filtro de busca */}
-      <BuyFilterBar />
-
-      {/* Breves Lançamentos */}
-      <PropertySection
+      </Section>      <BuyFilterBar />      <PropertySection
         title="Breves Lançamentos"
         subtitle="Empreendimentos em fase de pré-lançamento com condições exclusivas"
         properties={PRE_LAUNCH_PROPERTIES}
         className="pt-12"
-      />
-
-      {/* Recém-Lançados */}
-      <PropertySection
+      />      <PropertySection
         title="Recém-Lançados"
         subtitle="Os mais novos empreendimentos disponíveis no mercado"
         properties={NEW_PROPERTIES}
-      />
-
-      {/* Lançados */}
-      <PropertySection
+      />      <PropertySection
         title="Lançados"
         subtitle="Empreendimentos consolidados com unidades disponíveis"
         properties={LAUNCHED_PROPERTIES}
-      />
-
-      {/* CTA para ver todos */}
-      <Section spacing="sm" className="pb-16">
+      />      <Section spacing="sm" className="pb-16">
         <Container>
           <div className="flex justify-center">
             <Button

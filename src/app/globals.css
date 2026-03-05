@@ -4,11 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* ---- Tipografia ---- */
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* ---- Brand ---- */
+  
   --color-primary:          var(--primary);
   --color-primary-light:    var(--primary-light);
   --color-primary-dark:     var(--primary-dark);
@@ -22,29 +22,29 @@
   --color-accent:           var(--accent);
   --color-accent-foreground: var(--accent-foreground);
 
-  /* ---- Superfícies ---- */
+  
   --color-background:       var(--background);
   --color-surface:          var(--surface);
   --color-surface-alt:      var(--surface-alt);
 
-  /* ---- Texto ---- */
+  
   --color-foreground:       var(--foreground);
   --color-muted:            var(--muted);
   --color-muted-foreground: var(--muted-foreground);
 
-  /* ---- Bordas ---- */
+  
   --color-border:           var(--border);
   --color-input:            var(--input);
   --color-ring:             var(--ring);
 
-  /* ---- Neutros ---- */
+  
   --color-neutral-900:      var(--neutral-900);
   --color-neutral-700:      var(--neutral-700);
   --color-neutral-500:      var(--neutral-500);
   --color-neutral-300:      var(--neutral-300);
   --color-neutral-100:      var(--neutral-100);
 
-  /* ---- Feedback ---- */
+  
   --color-success:          var(--success);
   --color-success-light:    var(--success-light);
   --color-success-foreground: var(--success-foreground);
@@ -57,7 +57,7 @@
   --color-danger-light:     var(--danger-light);
   --color-danger-foreground: var(--danger-foreground);
 
-  /* ---- shadcn/ui aliases ---- */
+  
   --color-card:             var(--card);
   --color-card-foreground:  var(--card-foreground);
   --color-popover:          var(--popover);
@@ -65,7 +65,7 @@
   --color-destructive:      var(--danger);
   --color-destructive-foreground: var(--danger-foreground);
 
-  /* ---- Border radius ---- */
+  
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -75,7 +75,7 @@
 :root {
   --radius: 0.5rem;
 
-  /* ---- Brand ---- */
+  
   --primary:              #b5804f;
   --primary-light:        #d4a574;
   --primary-dark:         #8a5e35;
@@ -89,29 +89,29 @@
   --accent:               #e8c97a;
   --accent-foreground:    #1a1a1a;
 
-  /* ---- Superfícies ---- */
+  
   --background:           #f9f7f4;
   --surface:              #ffffff;
   --surface-alt:          #f1ede8;
 
-  /* ---- Texto ---- */
+  
   --foreground:           #1a1a1a;
   --muted:                #f1ede8;
   --muted-foreground:     #737373;
 
-  /* ---- Bordas / Inputs ---- */
+  
   --border:               #e2ddd8;
   --input:                #e2ddd8;
   --ring:                 #b5804f;
 
-  /* ---- Neutros ---- */
+  
   --neutral-900:          #1a1a1a;
   --neutral-700:          #404040;
   --neutral-500:          #737373;
   --neutral-300:          #d4d0cb;
   --neutral-100:          #f5f2ef;
 
-  /* ---- Feedback ---- */
+  
   --success:              #2e7d32;
   --success-light:        #e8f5e9;
   --success-foreground:   #ffffff;
@@ -124,7 +124,7 @@
   --danger-light:         #ffebee;
   --danger-foreground:    #ffffff;
 
-  /* ---- shadcn/ui aliases ---- */
+  
   --card:                 #ffffff;
   --card-foreground:      #1a1a1a;
   --popover:              #ffffff;

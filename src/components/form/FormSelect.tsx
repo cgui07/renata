@@ -1,7 +1,7 @@
-import { forwardRef } from "react"
-import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { forwardRef } from "react"
 import { FormField } from "./FormField"
+import { ChevronDown } from "lucide-react"
 import type { BaseFieldProps, SelectOption } from "@/types"
 
 export interface FormSelectProps
@@ -11,19 +11,19 @@ export interface FormSelectProps
   placeholder?: string
 }
 
-/**
- * Campo de seleção (dropdown) reutilizável.
- * Compatível com react-hook-form via spread de register().
- *
- * @example
- * <FormSelect
- *   label="Tipo de imóvel"
- *   placeholder="Selecione..."
- *   options={PROPERTY_TYPES}
- *   error={errors.type?.message}
- *   {...register("type")}
- * />
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
   (
     {
