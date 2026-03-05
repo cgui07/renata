@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Header } from "@/components/layout"
 import { Footer } from "@/components/layout"
+import { FavoritesProvider } from "@/hooks/useFavorites"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -30,9 +31,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen flex flex-col bg-background antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <FavoritesProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </FavoritesProvider>
       </body>
     </html>
   )

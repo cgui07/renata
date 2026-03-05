@@ -2,12 +2,20 @@ import Link from "next/link"
 import { Container } from "@/components/layout"
 import { Section } from "@/components/layout"
 import { Button } from "@/components/ui/button"
+import { BuyFilterBar } from "@/components/sections/BuyFilterBar"
+import { PropertySection } from "@/components/sections/PropertySection"
 import { ROUTES } from "@/constants"
+import {
+  PRE_LAUNCH_PROPERTIES,
+  NEW_PROPERTIES,
+  LAUNCHED_PROPERTIES,
+} from "@/lib/mock-data"
 
 export default function HomePage() {
   return (
     <>
-      <Section spacing="xl" className="bg-surface">
+      {/* Hero */}
+      <Section spacing="lg" className="bg-linear-to-b from-secondary/3 to-surface pb-16">
         <Container>
           <div className="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-secondary leading-tight">
@@ -19,13 +27,54 @@ export default function HomePage() {
               A Renata Imóveis cuida de cada detalhe para você.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-primary-foreground">
                 <Link href={ROUTES.PROPERTIES}>Ver imóveis</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="border-primary/30 text-primary hover:bg-primary/5">
                 <Link href={ROUTES.CONTACT}>Falar com especialista</Link>
               </Button>
             </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Filtro de busca */}
+      <BuyFilterBar />
+
+      {/* Breves Lançamentos */}
+      <PropertySection
+        title="Breves Lançamentos"
+        subtitle="Empreendimentos em fase de pré-lançamento com condições exclusivas"
+        properties={PRE_LAUNCH_PROPERTIES}
+        className="pt-12"
+      />
+
+      {/* Recém-Lançados */}
+      <PropertySection
+        title="Recém-Lançados"
+        subtitle="Os mais novos empreendimentos disponíveis no mercado"
+        properties={NEW_PROPERTIES}
+      />
+
+      {/* Lançados */}
+      <PropertySection
+        title="Lançados"
+        subtitle="Empreendimentos consolidados com unidades disponíveis"
+        properties={LAUNCHED_PROPERTIES}
+      />
+
+      {/* CTA para ver todos */}
+      <Section spacing="sm" className="pb-16">
+        <Container>
+          <div className="flex justify-center">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="rounded-full px-10 border-primary/40 text-primary font-semibold hover:bg-primary/5 hover:border-primary"
+            >
+              <Link href={ROUTES.PROPERTIES}>Ver mais destaques</Link>
+            </Button>
           </div>
         </Container>
       </Section>
