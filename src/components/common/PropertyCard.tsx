@@ -1,17 +1,18 @@
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { TrackView } from "@/components/common/TrackView"
 import { formatCurrency, formatArea } from "@/lib/formatters"
 import { ContactModal } from "@/components/common/ContactModal"
 import { FavoriteButton } from "@/components/common/FavoriteButton"
 import type { PropertyListing, STATUS_LABELS } from "@/lib/mock-data"
 import { PropertyCarousel } from "@/components/common/PropertyCarousel"
+import { PropertyDetailSheet } from "@/components/common/PropertyDetailSheet"
 import { Building2, MapPin, Maximize2, ArrowRight, MessageCircle } from "lucide-react"
 
 interface PropertyCardProps {
   property: PropertyListing
   statusLabels: typeof STATUS_LABELS
-  
   variant?: "compact" | "full"
   leadSource?: "property" | "favorites_property"
   className?: string
@@ -34,11 +35,19 @@ export function PropertyCard({
     <article
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-xl border border-border/50",
-        "bg-surface transition-all duration-300",
+        "bg-surface transition-all duration-300 cursor-pointer",
         "hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20 hover:-translate-y-0.5",
         className
       )}
-    >      {variant === "full" ? (
+    >
+      <TrackView propertyId={property.id} propertyName={property.name} />
+      <PropertyDetailSheet
+        property={property}
+        statusLabels={statusLabels}
+        leadSource={leadSource}
+      />
+
+      {variant === "full" ? (
         <div className="relative">
           <PropertyCarousel name={property.name} slideCount={5} />
           <FavoriteButton
@@ -51,19 +60,28 @@ export function PropertyCard({
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-linear-to-br from-secondary/5 to-primary/10">
             <Building2 className="size-10 text-neutral-300" />
             <span className="text-xs text-neutral-400">Imagem em breve</span>
-          </div>          <Badge
+          </div>
+
+          <Badge
             className={cn(
-              "absolute top-3 left-3 text-[0.65rem] font-semibold uppercase tracking-wider border-0 px-2.5 py-1 shadow-sm",
+              "absolute top-3 left-3 z-1 text-[0.65rem] font-semibold uppercase tracking-wider border-0 px-2.5 py-1 shadow-sm",
               statusStyles[property.status]
             )}
           >
             {statusLabels[property.status]}
-          </Badge>          <FavoriteButton
+          </Badge>
+
+          <FavoriteButton
             propertyId={property.id}
             className="absolute top-3 right-3 z-10"
-          />          <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
+          />
+
+          <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
         </div>
-      )}      <div className="flex flex-1 flex-col gap-3 p-5">        <div>
+      )}
+
+      <div className="flex flex-1 flex-col gap-3 p-5">
+        <div>
           <h3 className="text-base font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
             {property.name}
           </h3>
@@ -71,22 +89,30 @@ export function PropertyCard({
             <MapPin className="size-3.5 shrink-0" />
             <span>{property.neighborhood}, {property.city}</span>
           </div>
-        </div>        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-500">
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-500">
           <span className="flex items-center gap-1.5">
             <Maximize2 className="size-3.5" />
             {formatArea(property.areaMin)} a {formatArea(property.areaMax)}
           </span>
           <span className="hidden sm:inline text-neutral-300">|</span>
           <span>{property.typology}</span>
-        </div>        {variant === "full" && property.address && (
+        </div>
+
+        {variant === "full" && property.address && (
           <p className="text-xs text-muted-foreground leading-relaxed line-clamp-1">
             {property.address}
           </p>
-        )}        {variant === "full" && property.description && (
+        )}
+
+        {variant === "full" && property.description && (
           <p className="text-sm text-neutral-500 leading-relaxed line-clamp-2">
             {property.description}
           </p>
-        )}        <div
+        )}
+
+        <div
           className={cn(
             "mt-auto pt-3 border-t border-border/50",
             variant === "compact"
@@ -105,29 +131,27 @@ export function PropertyCard({
             </div>
 
             {variant === "compact" && (
-              <Button
-                variant="ghost"
-                size="sm"
-                className="gap-1.5 text-xs font-semibold text-secondary hover:text-primary hover:bg-primary/5 shrink-0"
-              >
+              <span className="relative z-10 gap-1.5 text-xs font-semibold text-secondary group-hover:text-primary shrink-0 flex items-center">
                 Ver detalhes
                 <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-              </Button>
+              </span>
             )}
           </div>
 
           {variant === "full" && (
-            <ContactModal
-              propertyId={property.id}
-              propertyName={property.name}
-              source={leadSource}
-              trigger={
-                <Button className="w-full gap-2 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold">
-                  <MessageCircle className="size-4" />
-                  Falar com o corretor
-                </Button>
-              }
-            />
+            <div className="relative z-10">
+              <ContactModal
+                propertyId={property.id}
+                propertyName={property.name}
+                source={leadSource}
+                trigger={
+                  <Button className="w-full gap-2 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold">
+                    <MessageCircle className="size-4" />
+                    Falar com o corretor
+                  </Button>
+                }
+              />
+            </div>
           )}
         </div>
       </div>

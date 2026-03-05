@@ -12,10 +12,9 @@ import {
 
 interface SortDropdownProps {
   currentSort: SortOption
-  currentPage: number
 }
 
-export function SortDropdown({ currentSort, currentPage }: SortDropdownProps) {
+export function SortDropdown({ currentSort }: SortDropdownProps) {
   const router = useRouter()
 
   function handleSort(value: string) {

@@ -1,4 +1,5 @@
 "use client"
+/* eslint-disable react-hooks/set-state-in-effect */
 
 import { trackEvent } from "@/app/actions/events"
 import {
@@ -40,6 +41,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   const [loaded, setLoaded] = useState(false)
 
   
+   
   useEffect(() => {
     setFavorites(loadFavorites())
     setLoaded(true)
@@ -53,17 +55,19 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   const toggle = useCallback((id: string, propertyName?: string) => {
     setFavorites((prev) => {
       const next = new Set(prev)
-      const adding = !next.has(id)
-      if (adding) {
-        next.add(id)
-        const sessionId = localStorage.getItem("renata-session-id") ?? "unknown"
-        trackEvent({ type: "property_favorite", sessionId, propertyId: id, propertyName })
-      } else {
+      if (next.has(id)) {
         next.delete(id)
+      } else {
+        next.add(id)
       }
       return next
     })
-  }, [])
+
+    if (!favorites.has(id)) {
+      const sessionId = localStorage.getItem("renata-session-id") ?? "unknown"
+      trackEvent({ type: "property_favorite", sessionId, propertyId: id, propertyName })
+    }
+  }, [favorites])
 
   const isFavorite = useCallback(
     (id: string) => favorites.has(id),

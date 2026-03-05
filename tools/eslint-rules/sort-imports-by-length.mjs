@@ -128,7 +128,7 @@ const rule = {
       if (withoutBraces.length > 0) sections.push(withoutBraces.join(eol))
       if (withBraces.length > 0) sections.push(withBraces.join(eol))
 
-      const replacement = sections.join(`${eol}${eol}`)
+      const replacement = sections.join(eol)
       const replaceStart = entries[0].blockRange.startIndex
       const replaceEnd = entries[entries.length - 1].blockRange.endIndex
       const originalRegion = sourceCode.text.slice(replaceStart, replaceEnd)

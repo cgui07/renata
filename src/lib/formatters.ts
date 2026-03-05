@@ -8,7 +8,7 @@
 }
 
 export function formatArea(value: number): string {
-  return `${new Intl.NumberFormat("pt-BR").format(value)} mÂ²`
+  return `${new Intl.NumberFormat("pt-BR").format(value)} m²`
 }
 
 export function formatDate(date: Date | string): string {

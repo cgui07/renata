@@ -4,7 +4,7 @@ import { LeadsTable } from "./LeadsTable"
 import { redirect } from "next/navigation"
 import { getLeads, getEventStats, adminLogout } from "@/app/actions/admin"
 
-export const metadata = { title: "Admin â€” Leads" }
+export const metadata = { title: "Admin — Leads" }
 
 const STATUS_OPTIONS = [
   { value: "all", label: "Todos" },
@@ -28,7 +28,7 @@ interface PageProps {
 export default async function AdminLeadsPage({ searchParams }: PageProps) {
   const cookieStore = await cookies()
   if (cookieStore.get("admin_session")?.value !== "authenticated") {
-    redirect("/login")
+    redirect("/admin/login")
   }
 
   const params = await searchParams
@@ -46,7 +46,7 @@ export default async function AdminLeadsPage({ searchParams }: PageProps) {
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div>
             <h1 className="text-xl font-bold text-foreground">Painel Admin</h1>
-            <p className="text-sm text-muted-foreground">Renata ImÃ³veis</p>
+            <p className="text-sm text-muted-foreground">Renata Imóveis</p>
           </div>
           <form action={async () => { "use server"; await adminLogout() }}>
             <button
@@ -63,7 +63,7 @@ export default async function AdminLeadsPage({ searchParams }: PageProps) {
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {[
             { label: "Leads total", value: total },
-            { label: "VisualizaÃ§Ãµes", value: stats.views },
+            { label: "Visualizações", value: stats.views },
             { label: "Favoritos", value: stats.favorites },
             { label: "Cliques WhatsApp", value: stats.whatsappClicks },
           ].map(({ label, value }) => (
@@ -80,7 +80,7 @@ export default async function AdminLeadsPage({ searchParams }: PageProps) {
           {STATUS_OPTIONS.map((opt) => (
             <a
               key={opt.value}
-              href={`/leads?status=${opt.value}`}
+              href={`/admin/leads?status=${opt.value}`}
               className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                 status === opt.value
                   ? "border-primary bg-primary text-white"
@@ -106,11 +106,11 @@ export default async function AdminLeadsPage({ searchParams }: PageProps) {
 
           {pages > 1 && (
             <div className="flex items-center justify-between border-t border-border/40 px-6 py-4">
-              <p className="text-sm text-muted-foreground">PÃ¡gina {page} de {pages}</p>
+              <p className="text-sm text-muted-foreground">Página {page} de {pages}</p>
               <div className="flex gap-2">
                 {page > 1 && (
                   <a
-                    href={`/leads?page=${page - 1}&status=${status}`}
+                    href={`/admin/leads?page=${page - 1}&status=${status}`}
                     className="rounded-md border border-border/60 px-3 py-1.5 text-sm hover:bg-neutral-50"
                   >
                     Anterior
@@ -118,10 +118,10 @@ export default async function AdminLeadsPage({ searchParams }: PageProps) {
                 )}
                 {page < pages && (
                   <a
-                    href={`/leads?page=${page + 1}&status=${status}`}
+                    href={`/admin/leads?page=${page + 1}&status=${status}`}
                     className="rounded-md border border-border/60 px-3 py-1.5 text-sm hover:bg-neutral-50"
                   >
-                    PrÃ³xima
+                    Próxima
                   </a>
                 )}
               </div>
