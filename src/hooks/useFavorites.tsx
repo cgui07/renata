@@ -1,5 +1,7 @@
 "use client"
+/* eslint-disable react-hooks/set-state-in-effect */
 
+import { trackEvent } from "@/app/actions/events"
 import {
   createContext,
   useCallback,
@@ -11,7 +13,7 @@ import {
 
 interface FavoritesContextValue {
   favorites: Set<string>
-  toggle: (id: string) => void
+  toggle: (id: string, propertyName?: string) => void
   isFavorite: (id: string) => boolean
   count: number
 }
@@ -38,18 +40,19 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   const [favorites, setFavorites] = useState<Set<string>>(new Set())
   const [loaded, setLoaded] = useState(false)
 
-  // Carrega do localStorage após montagem (evita hydration mismatch)
+  
+   
   useEffect(() => {
     setFavorites(loadFavorites())
     setLoaded(true)
   }, [])
 
-  // Persiste sempre que muda
+  
   useEffect(() => {
     if (loaded) saveFavorites(favorites)
   }, [favorites, loaded])
 
-  const toggle = useCallback((id: string) => {
+  const toggle = useCallback((id: string, propertyName?: string) => {
     setFavorites((prev) => {
       const next = new Set(prev)
       if (next.has(id)) {
@@ -59,7 +62,12 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
       }
       return next
     })
-  }, [])
+
+    if (!favorites.has(id)) {
+      const sessionId = localStorage.getItem("renata-session-id") ?? "unknown"
+      trackEvent({ type: "property_favorite", sessionId, propertyId: id, propertyName })
+    }
+  }, [favorites])
 
   const isFavorite = useCallback(
     (id: string) => favorites.has(id),

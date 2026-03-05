@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
-import { Container } from "@/components/layout/Container"
 import { Section } from "@/components/layout/Section"
-import { PropertyCard } from "@/components/common/PropertyCard"
+import { Container } from "@/components/layout/Container"
 import { Pagination } from "@/components/common/Pagination"
+import { PropertyCard } from "@/components/common/PropertyCard"
 import { SortDropdown } from "@/components/common/SortDropdown"
 import {
   ALL_PROPERTIES,
@@ -37,9 +37,7 @@ export default async function ImoveisPage({ searchParams }: PageProps) {
 
   return (
     <Section spacing="md">
-      <Container>
-        {/* Header com contagem + ordenação */}
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <Container>        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold text-foreground tracking-tight">
               <span className="text-primary">{ALL_PROPERTIES.length.toLocaleString("pt-BR")}</span>{" "}
@@ -50,11 +48,8 @@ export default async function ImoveisPage({ searchParams }: PageProps) {
             </p>
           </div>
 
-          <SortDropdown currentSort={currentSort} currentPage={page} />
-        </div>
-
-        {/* Grid 4 colunas */}
-        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <SortDropdown currentSort={currentSort} />
+        </div>        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {properties.map((property) => (
             <PropertyCard
               key={property.id}
@@ -63,10 +58,7 @@ export default async function ImoveisPage({ searchParams }: PageProps) {
               variant="full"
             />
           ))}
-        </div>
-
-        {/* Paginação */}
-        <Pagination
+        </div>        <Pagination
           currentPage={page}
           totalPages={totalPages}
           basePath="/imoveis"

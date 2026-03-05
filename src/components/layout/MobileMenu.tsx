@@ -1,7 +1,12 @@
 "use client"
 
+import { Logo } from "./Logo"
 import { useState } from "react"
+import { NavLinks } from "./NavLinks"
 import { Menu, X } from "lucide-react"
+import { UserActions } from "./UserActions"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
 import {
   Sheet,
   SheetContent,
@@ -9,11 +14,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Separator } from "@/components/ui/separator"
-import { Button } from "@/components/ui/button"
-import { Logo } from "./Logo"
-import { NavLinks } from "./NavLinks"
-import { UserActions } from "./UserActions"
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false)

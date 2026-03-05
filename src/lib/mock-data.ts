@@ -187,7 +187,7 @@ export const NEIGHBORHOODS = [
   "Vila Mariana",
 ]
 
-/* ─── Dados completos para a página /imoveis ─── */
+
 
 const RJ_NEIGHBORHOODS = [
   "Barra da Tijuca",

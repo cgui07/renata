@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils"
 import { forwardRef } from "react"
 import { Loader2 } from "lucide-react"
-import { cn } from "@/lib/utils"
 import { FormField } from "./FormField"
 import type { BaseFieldProps, IconFieldProps } from "@/types"
 
@@ -9,18 +9,18 @@ export interface FormInputProps
     BaseFieldProps,
     IconFieldProps {}
 
-/**
- * Campo de input genérico e reutilizável.
- * Suporta todos os tipos de input HTML, ícones laterais, estados de loading,
- * erro e validação. Compatível com react-hook-form via spread de register().
- *
- * @example
- * // Uso básico
- * <FormInput label="E-mail" type="email" placeholder="seu@email.com" />
- *
- * // Com react-hook-form
- * <FormInput label="Nome" error={errors.name?.message} {...register("name")} />
- */
+
+
+
+
+
+
+
+
+
+
+
+
 export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   (
     {

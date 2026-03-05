@@ -1,7 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import { cn } from "@/lib/utils"
 import { Search } from "lucide-react"
+import { PROPERTY_TYPES } from "@/constants"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { NEIGHBORHOODS } from "@/lib/mock-data"
+import { Container } from "@/components/layout/Container"
 import {
   Select,
   SelectContent,
@@ -9,12 +15,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Container } from "@/components/layout/Container"
-import { cn } from "@/lib/utils"
-import { PROPERTY_TYPES } from "@/constants"
-import { NEIGHBORHOODS } from "@/lib/mock-data"
 
 const BEDROOM_OPTIONS = [
   { label: "1", value: "1" },
@@ -34,21 +34,14 @@ export function BuyFilterBar() {
             "rounded-2xl border border-border/40 bg-surface p-6 md:p-8",
             "shadow-xl shadow-secondary/5"
           )}
-        >
-          {/* Título */}
-          <div className="mb-6">
+        >          <div className="mb-6">
             <h2 className="text-lg font-bold text-foreground">
               Encontre seu imóvel
             </h2>
             <p className="mt-0.5 text-sm text-muted-foreground">
               Busque por tipo, localização, preço e mais
             </p>
-          </div>
-
-          {/* Campos */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-12 lg:items-end">
-            {/* Tipo de imóvel */}
-            <FilterField label="Tipo" className="lg:col-span-2">
+          </div>          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-12 lg:items-end">            <FilterField label="Tipo" className="lg:col-span-2">
               <Select>
                 <SelectTrigger className="h-11 bg-surface border-border/60">
                   <SelectValue placeholder="Todos" />
@@ -61,10 +54,7 @@ export function BuyFilterBar() {
                   ))}
                 </SelectContent>
               </Select>
-            </FilterField>
-
-            {/* Bairro */}
-            <FilterField label="Bairro / Região" className="lg:col-span-3">
+            </FilterField>            <FilterField label="Bairro / Região" className="lg:col-span-3">
               <Select>
                 <SelectTrigger className="h-11 bg-surface border-border/60">
                   <SelectValue placeholder="Todos os bairros" />
@@ -77,10 +67,7 @@ export function BuyFilterBar() {
                   ))}
                 </SelectContent>
               </Select>
-            </FilterField>
-
-            {/* Faixa de preço */}
-            <FilterField label="Faixa de preço" className="lg:col-span-3">
+            </FilterField>            <FilterField label="Faixa de preço" className="lg:col-span-3">
               <div className="flex items-center gap-2">
                 <Input
                   type="text"
@@ -94,10 +81,7 @@ export function BuyFilterBar() {
                   className="h-11 bg-surface border-border/60 text-sm"
                 />
               </div>
-            </FilterField>
-
-            {/* Quartos */}
-            <FilterField label="Quartos" className="lg:col-span-2">
+            </FilterField>            <FilterField label="Quartos" className="lg:col-span-2">
               <div className="flex gap-1">
                 {BEDROOM_OPTIONS.map((opt) => (
                   <button
@@ -117,10 +101,7 @@ export function BuyFilterBar() {
                   </button>
                 ))}
               </div>
-            </FilterField>
-
-            {/* Botão buscar */}
-            <div className="lg:col-span-2 flex items-end">
+            </FilterField>            <div className="lg:col-span-2 flex items-end">
               <Button
                 size="lg"
                 className="w-full h-11 gap-2 bg-primary hover:bg-primary-dark text-primary-foreground font-semibold"
@@ -136,7 +117,7 @@ export function BuyFilterBar() {
   )
 }
 
-/* Sub-componente interno — wrapper de campo do filtro */
+
 function FilterField({
   label,
   className,

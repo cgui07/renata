@@ -12,11 +12,11 @@ interface FormFieldProps {
   children: ReactNode
 }
 
-/**
- * Wrapper base para todos os campos de formulário.
- * Gerencia label, mensagem de erro e texto de ajuda de forma consistente.
- * Não use diretamente — prefira FormInput, FormSelect, etc.
- */
+
+
+
+
+
 export function FormField({
   label,
   error,

@@ -1,14 +1,15 @@
 "use client"
 
 import Link from "next/link"
+
 import { Heart } from "lucide-react"
-import { Container } from "@/components/layout/Container"
-import { Section } from "@/components/layout/Section"
-import { PropertyCard } from "@/components/common/PropertyCard"
+import { ROUTES } from "@/constants"
 import { Button } from "@/components/ui/button"
 import { useFavorites } from "@/hooks/useFavorites"
+import { Section } from "@/components/layout/Section"
+import { Container } from "@/components/layout/Container"
+import { PropertyCard } from "@/components/common/PropertyCard"
 import { ALL_PROPERTIES, PRE_LAUNCH_PROPERTIES, NEW_PROPERTIES, LAUNCHED_PROPERTIES, STATUS_LABELS } from "@/lib/mock-data"
-import { ROUTES } from "@/constants"
 
 const EVERY_PROPERTY = [
   ...PRE_LAUNCH_PROPERTIES,
@@ -22,7 +23,7 @@ export default function FavoritosPage() {
 
   const favoriteProperties = EVERY_PROPERTY.filter((p) => favorites.has(p.id))
 
-  // Remove duplicatas por id
+  
   const unique = favoriteProperties.filter(
     (p, i, arr) => arr.findIndex((x) => x.id === p.id) === i
   )
@@ -52,6 +53,7 @@ export default function FavoritosPage() {
                 property={property}
                 statusLabels={STATUS_LABELS}
                 variant="full"
+                leadSource="favorites_property"
               />
             ))}
           </div>

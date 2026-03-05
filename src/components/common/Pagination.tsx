@@ -1,15 +1,14 @@
-"use client"
+﻿"use client"
 
 import Link from "next/link"
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
+
 import { cn } from "@/lib/utils"
+import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 
 interface PaginationProps {
   currentPage: number
   totalPages: number
-  /** Caminho base, ex: "/imoveis" */
   basePath: string
-  /** Params extras a preservar na URL (ex: sort) */
   extraParams?: Record<string, string>
   className?: string
 }
@@ -43,19 +42,16 @@ export function Pagination({
 
   return (
     <nav
-      aria-label="Paginação"
+      aria-label="Paginacao"
       className={cn("flex items-center justify-center gap-1", className)}
     >
-      {/* Anterior */}
       <PaginationLink
         href={currentPage > 1 ? buildUrl(basePath, currentPage - 1, extraParams) : undefined}
         disabled={currentPage <= 1}
-        aria-label="Página anterior"
+        aria-label="Pagina anterior"
       >
         <ChevronLeft className="size-4" />
       </PaginationLink>
-
-      {/* Números */}
       {pages.map((page, i) =>
         page === "ellipsis" ? (
           <span
@@ -74,12 +70,10 @@ export function Pagination({
           </PaginationLink>
         )
       )}
-
-      {/* Próxima */}
       <PaginationLink
         href={currentPage < totalPages ? buildUrl(basePath, currentPage + 1, extraParams) : undefined}
         disabled={currentPage >= totalPages}
-        aria-label="Próxima página"
+        aria-label="Proxima pagina"
       >
         <ChevronRight className="size-4" />
       </PaginationLink>
@@ -130,7 +124,6 @@ function PaginationLink({
   )
 }
 
-/** Gera array de números de página + "ellipsis" */
 function getVisiblePages(
   current: number,
   total: number

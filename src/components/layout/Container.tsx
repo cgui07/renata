@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 import type { HTMLAttributes } from "react"
 
 interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
-  /** Largura máxima customizada. Padrão: max-w-7xl */
+  
   size?: "sm" | "md" | "lg" | "xl" | "full"
 }
 

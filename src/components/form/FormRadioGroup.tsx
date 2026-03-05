@@ -1,5 +1,5 @@
-import { forwardRef } from "react"
 import { cn } from "@/lib/utils"
+import { forwardRef } from "react"
 import { FormField } from "./FormField"
 import type { BaseFieldProps, SelectOption } from "@/types"
 
@@ -7,25 +7,25 @@ export interface FormRadioGroupProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled">,
     Pick<BaseFieldProps, "label" | "error" | "helpText" | "required" | "disabled"> {
   options: SelectOption[]
-  /** Direção do grupo. Padrão: vertical */
+  
   direction?: "vertical" | "horizontal"
   name: string
 }
 
-/**
- * Grupo de radio buttons com label de grupo, erro e texto de ajuda.
- * Compatível com react-hook-form via spread de register().
- *
- * @example
- * <FormRadioGroup
- *   label="Status do imóvel"
- *   name="status"
- *   options={PROPERTY_STATUS}
- *   direction="horizontal"
- *   error={errors.status?.message}
- *   {...register("status")}
- * />
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const FormRadioGroup = forwardRef<HTMLInputElement, FormRadioGroupProps>(
   (
     {

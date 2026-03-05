@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { SORT_OPTIONS, type SortOption } from "@/lib/mock-data"
 import {
   Select,
   SelectContent,
@@ -8,20 +9,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { SORT_OPTIONS, type SortOption } from "@/lib/mock-data"
 
 interface SortDropdownProps {
   currentSort: SortOption
-  currentPage: number
 }
 
-export function SortDropdown({ currentSort, currentPage }: SortDropdownProps) {
+export function SortDropdown({ currentSort }: SortDropdownProps) {
   const router = useRouter()
 
   function handleSort(value: string) {
     const params = new URLSearchParams()
     if (value !== "relevance") params.set("sort", value)
-    // Resetar para página 1 ao mudar a ordenação
+    
     const qs = params.toString()
     router.push(`/imoveis${qs ? `?${qs}` : ""}`)
   }

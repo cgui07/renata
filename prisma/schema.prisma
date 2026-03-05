@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Lead {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  phone        String
+  contactPref  String
+  propertyId   String?
+  propertyName String?
+  createdAt    DateTime @default(now())
+  status       String   @default("new")
+  notes        String?
+  favoriteIds  Json?
+  source       String   @default("property")
+
+  @@index([createdAt(sort: Desc)])
+  @@index([email])
+  @@index([propertyId])
+  @@index([status])
+  @@map("leads")
+}
+
+model Event {
+  id           String   @id @default(cuid())
+  type         String
+  propertyId   String?
+  propertyName String?
+  sessionId    String
+  metadata     Json?
+  createdAt    DateTime @default(now())
+
+  @@index([type])
+  @@index([propertyId])
+  @@index([sessionId])
+  @@index([createdAt(sort: Desc)])
+  @@map("events")
+}
