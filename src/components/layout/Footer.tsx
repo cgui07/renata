@@ -1,9 +1,9 @@
-import Link from "next/link"
-import { ROUTES } from "@/constants"
-import { Container } from "./Container"
+import Link from "next/link";
+import { ROUTES } from "@/constants";
+import { Container } from "./Container";
 
 export function Footer() {
-  const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-border bg-surface">
@@ -18,22 +18,32 @@ export function Footer() {
           </div>
 
           <nav className="flex gap-6 text-sm text-neutral-500">
-            <Link href={ROUTES.PROPERTIES} className="hover:text-primary transition-colors">
+            <Link
+              href={ROUTES.PROPERTIES}
+              className="hover:text-primary transition-colors"
+            >
               Imóveis
             </Link>
-            <Link href={ROUTES.ABOUT} className="hover:text-primary transition-colors">
+            <Link
+              href={ROUTES.ABOUT}
+              className="hover:text-primary transition-colors"
+            >
               Sobre
             </Link>
-            <Link href={ROUTES.CONTACT} className="hover:text-primary transition-colors">
+            <Link
+              href={ROUTES.CONTACT}
+              className="hover:text-primary transition-colors"
+            >
               Contato
             </Link>
           </nav>
         </div>
 
         <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
-          © {year} Renata Imóveis. Todos os direitos reservados.
+          © {year} Renata Imóveis. Todos os direitos reservados. · CNPJ
+          66.063.605/0001-30
         </div>
       </Container>
     </footer>
-  )
+  );
 }
